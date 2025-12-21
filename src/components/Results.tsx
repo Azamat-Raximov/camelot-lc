@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Award, X } from 'lucide-react';
+import { Award, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 // Import CEFR certificate images
@@ -17,15 +17,47 @@ import cefr10 from '@/assets/cefr-10.jpg';
 const cefrImages = [cefr1, cefr2, cefr3, cefr4, cefr5, cefr6, cefr7, cefr8, cefr9, cefr10];
 
 const Results: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { ref, isVisible } = useScrollAnimationSimple();
+
+  // Number of visible images (3 on desktop, 2 on tablet, 1 on mobile)
+  const getVisibleCount = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return 3;
+      if (window.innerWidth >= 640) return 2;
+      return 1;
+    }
+    return 3;
+  };
+
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => setVisibleCount(getVisibleCount());
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, cefrImages.length - visibleCount);
+
+  const goNext = () => {
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
+
+  const goPrev = () => {
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const visibleImages = cefrImages.slice(currentIndex, currentIndex + visibleCount);
 
   return (
     <section id="results" className="py-16 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4" ref={ref}>
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
             <Award className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">
@@ -43,34 +75,81 @@ const Results: React.FC = () => {
           </p>
         </div>
 
-        {/* CEFR Certificates Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {cefrImages.map((image, index) => (
-            <div
-              key={index}
-              onClick={() => setSelectedImage(image)}
-              className={`relative rounded-xl overflow-hidden shadow-lg cursor-pointer group transform transition-all duration-500 hover:scale-105 hover:shadow-xl ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        {/* Carousel Container */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Left Arrow */}
+          <button
+            onClick={goPrev}
+            disabled={currentIndex === 0}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border shadow-lg flex items-center justify-center transition-all ${
+              currentIndex === 0
+                ? 'opacity-40 cursor-not-allowed'
+                : 'hover:bg-secondary hover:scale-110'
+            }`}
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-foreground" />
+          </button>
+
+          {/* Images */}
+          <div className="flex gap-4 overflow-hidden">
+            {visibleImages.map((image, idx) => {
+              const actualIndex = currentIndex + idx;
+              return (
+                <div
+                  key={actualIndex}
+                  onClick={() => setSelectedImage(image)}
+                  className={`flex-1 relative rounded-xl overflow-hidden shadow-lg cursor-pointer group transform transition-all duration-500 hover:scale-[1.02] hover:shadow-xl ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${idx * 100}ms` }}
+                >
+                  <img
+                    src={image}
+                    alt={`CEFR Certificate ${actualIndex + 1}`}
+                    className="w-full h-64 md:h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                    <span className="text-primary-foreground text-sm font-medium bg-primary/80 px-3 py-1 rounded-full">
+                      {language === 'uz' ? "Ko'rish" : 'View'}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={goNext}
+            disabled={currentIndex >= maxIndex}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border shadow-lg flex items-center justify-center transition-all ${
+              currentIndex >= maxIndex
+                ? 'opacity-40 cursor-not-allowed'
+                : 'hover:bg-secondary hover:scale-110'
+            }`}
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-foreground" />
+          </button>
+        </div>
+
+        {/* Dots Indicator */}
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                idx === currentIndex
+                  ? 'bg-primary w-6'
+                  : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
               }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <img
-                src={image}
-                alt={`CEFR Certificate ${index + 1}`}
-                className="w-full h-48 md:h-56 object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                <span className="text-primary-foreground text-sm font-medium">
-                  {language === 'uz' ? "Ko'rish" : 'View'}
-                </span>
-              </div>
-            </div>
+            />
           ))}
         </div>
 
         {/* More Results Text */}
-        <div className="text-center mt-8">
-          <p className="text-muted-foreground">
+        <div className="text-center mt-6">
+          <p className="text-muted-foreground text-sm">
             {language === 'uz' 
               ? "Va yana 2000+ dan ortiq muvaffaqiyatli natijalar..."
               : "And over 2000+ more successful results..."

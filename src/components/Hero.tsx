@@ -58,9 +58,9 @@ const CountUp: React.FC<{ end: number; suffix?: string; duration?: number }> = (
   }, [hasStarted, end, duration]);
 
   return (
-    <div ref={ref} className="text-3xl md:text-4xl font-bold text-primary-foreground">
+    <span ref={ref} className="text-xl md:text-2xl font-bold text-primary-foreground">
       {count}{suffix}
-    </div>
+    </span>
   );
 };
 
@@ -160,20 +160,22 @@ const Hero: React.FC = () => {
             </Button>
           </div>
 
-          {/* Stats Section */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          {/* Stats Section - Compact */}
+          <div className="flex flex-wrap justify-center gap-3 lg:gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className={`relative rounded-2xl bg-gradient-to-br ${stat.bgColor} backdrop-blur-md p-4 md:p-6 transform hover:scale-105 transition-all duration-300 shadow-lg`}
+                className={`relative rounded-xl bg-gradient-to-br ${stat.bgColor} backdrop-blur-md px-4 py-3 transform hover:scale-105 transition-all duration-300 shadow-md`}
               >
-                <stat.icon className="w-6 h-6 text-primary-foreground/80 mb-2 mx-auto" />
-                <CountUp end={stat.value} suffix={stat.suffix} />
-                <p className="text-primary-foreground/90 text-xs md:text-sm font-medium mt-1">
+                <div className="flex items-center gap-2">
+                  <stat.icon className="w-4 h-4 text-primary-foreground/80" />
+                  <CountUp end={stat.value} suffix={stat.suffix} />
+                </div>
+                <p className="text-primary-foreground/90 text-xs font-medium mt-0.5">
                   {stat.label}
                 </p>
                 {stat.sublabel && (
-                  <p className="text-primary-foreground/70 text-xs mt-0.5">
+                  <p className="text-primary-foreground/70 text-[10px]">
                     {stat.sublabel}
                   </p>
                 )}
