@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
         <div className="max-w-2xl mx-auto mb-20">
           <div className="text-center mb-10">
             <Badge variant="secondary" className="mb-4 px-4 py-1.5">
-              <Mail className="w-4 h-4 mr-2" />
+              <Phone className="w-4 h-4 mr-2" />
               {language === 'uz' ? 'Bizga bog\'lanish' : 'Contact Us'}
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

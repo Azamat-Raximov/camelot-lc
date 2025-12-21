@@ -6,6 +6,7 @@ import Courses from '@/components/Courses';
 import Teachers from '@/components/Teachers';
 import Results from '@/components/Results';
 import Gallery from '@/components/Gallery';
+import CenterGallery from '@/components/CenterGallery';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -31,6 +32,7 @@ const Index: React.FC = () => {
           <Courses />
           <Teachers />
           <Results />
+          <CenterGallery />
           <Gallery />
           <FAQ />
           <Contact />
