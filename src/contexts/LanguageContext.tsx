@@ -181,8 +181,18 @@ const translations: Record<Language, Record<string, string>> = {
   }
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+// Keep a stable context reference across Vite Fast Refresh/HMR.
+// Otherwise, the Provider can hold an old context instance while consumers import a new one,
+// which triggers: "useLanguage must be used within a LanguageProvider".
+const globalForLang = globalThis as unknown as {
+  __camelot_language_context?: React.Context<LanguageContextType | undefined>;
+};
 
+const LanguageContext =
+  globalForLang.__camelot_language_context ??
+  createContext<LanguageContextType | undefined>(undefined);
+
+globalForLang.__camelot_language_context = LanguageContext;
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('uz');
 
