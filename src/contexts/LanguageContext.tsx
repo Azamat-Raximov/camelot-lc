@@ -19,7 +19,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.motto': 'WISDOM - IS DOING!',
-    'hero.subtitle': "Sirdaryo viloyatidagi eng yaxshi ingliz tili o'quv markazi",
+    'hero.subtitle': "Sirdaryo viloyatidagi ingliz tili o'quv markazi",
     'hero.cta': 'Kurslarni ko\'rish',
     'hero.contact': "Bog'lanish",
     
