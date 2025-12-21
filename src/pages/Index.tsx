@@ -32,8 +32,8 @@ const Index: React.FC = () => {
           <Results />
           <CenterGallery />
           <Courses />
-          <FAQ />
           <Contact />
+          <FAQ />
         </main>
         <Footer />
       </div>
