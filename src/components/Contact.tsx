@@ -69,12 +69,11 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      await fetch('https://hook.eu1.make.com/rhozcmbxxqxtuyvjmiopdgvwefytt8an', {
+      const response = await fetch('https://hook.eu1.make.com/rhozcmbxxqxtuyvjmiopdgvwefytt8an', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        mode: 'no-cors',
         body: JSON.stringify({
           name: formData.name,
           phone: `+998${formData.phone}`,
@@ -83,6 +82,10 @@ const Contact: React.FC = () => {
           timestamp: new Date().toISOString(),
         }),
       });
+
+      if (!response.ok) {
+        throw new Error('Webhook request failed');
+      }
 
       toast({
         title: language === 'uz' ? 'Muvaffaqiyat!' : 'Success!',
