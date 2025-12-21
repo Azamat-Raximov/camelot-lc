@@ -44,9 +44,10 @@ const translations: Record<Language, Record<string, string>> = {
     'results.title': "O'quvchilarimiz natijalari",
     'results.subtitle': "Muvaffaqiyatli bitiruvchilarimiz va ularning yutuqlari",
     'results.students': "O'quvchilar soni",
-    'results.ielts': "yildan IELTS natijalari",
+    'results.ielts': "2025 yildagi IELTS natijalar",
     'results.years': 'Yillik tajriba',
     'results.satisfaction': "O'quvchilar mamnuniyati",
+    'results.cefr': "CEFR natijalari",
     
     // Why Camelot
     'why.title': 'Nega aynan Camelot?',
@@ -128,9 +129,10 @@ const translations: Record<Language, Record<string, string>> = {
     'results.title': 'Our Students Results',
     'results.subtitle': 'Successful graduates and their achievements',
     'results.students': 'Total Students',
-    'results.ielts': 'IELTS results since',
+    'results.ielts': '2025 IELTS Results',
     'results.years': 'Years Experience',
     'results.satisfaction': 'Student Satisfaction',
+    'results.cefr': 'CEFR Results',
     
     // Why Camelot
     'why.title': 'Why Camelot?',

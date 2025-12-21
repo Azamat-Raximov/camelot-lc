@@ -1,8 +1,68 @@
-import React from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Play, Users, Award, TrendingUp, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import heroImage from '@/assets/hero-students.jpg';
+
+// CountUp component for animated numbers
+const CountUp: React.FC<{ end: number; suffix?: string; duration?: number }> = ({ 
+  end, 
+  suffix = '', 
+  duration = 2000 
+}) => {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.floor(easeOutQuart * end));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [hasStarted, end, duration]);
+
+  return (
+    <div ref={ref} className="text-3xl md:text-4xl font-bold text-primary-foreground">
+      {count}{suffix}
+    </div>
+  );
+};
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -13,6 +73,38 @@ const Hero: React.FC = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const stats = [
+    {
+      icon: Users,
+      value: 2000,
+      suffix: '+',
+      label: t('results.students'),
+      bgColor: 'from-blue-500/80 to-blue-600/80',
+    },
+    {
+      icon: Award,
+      value: 350,
+      suffix: '+',
+      label: 'IELTS 7.0+',
+      sublabel: t('results.ielts'),
+      bgColor: 'from-amber-500/80 to-orange-500/80',
+    },
+    {
+      icon: TrendingUp,
+      value: 5,
+      suffix: '+',
+      label: t('results.years'),
+      bgColor: 'from-green-500/80 to-emerald-600/80',
+    },
+    {
+      icon: ThumbsUp,
+      value: 98,
+      suffix: '%',
+      label: t('results.satisfaction'),
+      bgColor: 'from-purple-500/80 to-violet-600/80',
+    },
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -48,7 +140,7 @@ const Hero: React.FC = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in mb-16" style={{ animationDelay: '0.3s' }}>
             <Button
               onClick={() => scrollToSection('#courses')}
               size="lg"
@@ -66,6 +158,27 @@ const Hero: React.FC = () => {
               <Play className="w-5 h-5 mr-2" />
               {t('hero.contact')}
             </Button>
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className={`relative rounded-2xl bg-gradient-to-br ${stat.bgColor} backdrop-blur-md p-4 md:p-6 transform hover:scale-105 transition-all duration-300 shadow-lg`}
+              >
+                <stat.icon className="w-6 h-6 text-primary-foreground/80 mb-2 mx-auto" />
+                <CountUp end={stat.value} suffix={stat.suffix} />
+                <p className="text-primary-foreground/90 text-xs md:text-sm font-medium mt-1">
+                  {stat.label}
+                </p>
+                {stat.sublabel && (
+                  <p className="text-primary-foreground/70 text-xs mt-0.5">
+                    {stat.sublabel}
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
