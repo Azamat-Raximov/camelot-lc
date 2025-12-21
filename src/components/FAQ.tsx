@@ -42,7 +42,7 @@ const FAQ: React.FC = () => {
                 value={`item-${index}`}
                 className="bg-card border border-border rounded-xl px-6 shadow-card"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:text-primary py-6">
+                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline py-6">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">

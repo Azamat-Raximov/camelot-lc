@@ -1,5 +1,5 @@
 import React from 'react';
-import { Crown, GraduationCap, Users, Trophy, Sparkles } from 'lucide-react';
+import { Crown, GraduationCap, Users, Trophy, Sparkles, Calendar, Building2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -10,29 +10,34 @@ const WhyCamelot: React.FC = () => {
 
   const features = [
     {
-      icon: GraduationCap,
-      title: t('why.quality.title'),
-      description: t('why.quality.desc'),
+      icon: Users,
+      title: t('why.freeTeacher.title'),
+      description: t('why.freeTeacher.desc'),
     },
     {
-      icon: Users,
+      icon: Calendar,
+      title: t('why.events.title'),
+      description: t('why.events.desc'),
+    },
+    {
+      icon: Trophy,
+      title: t('why.testCenter.title'),
+      description: t('why.testCenter.desc'),
+    },
+    {
+      icon: GraduationCap,
       title: t('why.teachers.title'),
       description: t('why.teachers.desc'),
     },
     {
-      icon: Sparkles,
-      title: t('why.environment.title'),
-      description: t('why.environment.desc'),
-    },
-    {
-      icon: Trophy,
-      title: t('why.results.title'),
-      description: t('why.results.desc'),
+      icon: Building2,
+      title: t('why.coworking.title'),
+      description: t('why.coworking.desc'),
     },
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-background">
+    <section id="why-camelot" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4" ref={ref}>
         {/* Section Header */}
         <div className={`text-center max-w-2xl mx-auto mb-16 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
@@ -48,20 +53,18 @@ const WhyCamelot: React.FC = () => {
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Features Grid - Circular design */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`group flex gap-5 p-6 bg-card border border-border rounded-2xl shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50 hover-lift animate-slide-${index % 2 === 0 ? 'left' : 'right'} ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
+              className={`group text-center p-8 bg-card border border-border rounded-2xl shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50 hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
-              <div className="w-14 h-14 shrink-0 royal-gradient rounded-xl flex items-center justify-center shadow-royal group-hover:scale-110 transition-transform">
-                <feature.icon className="w-7 h-7 text-primary-foreground" />
+              <div className="w-20 h-20 mx-auto royal-gradient rounded-full flex items-center justify-center shadow-royal group-hover:scale-110 transition-transform mb-6">
+                <feature.icon className="w-10 h-10 text-primary-foreground" />
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">{feature.description}</p>
             </div>
           ))}
         </div>

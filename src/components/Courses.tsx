@@ -36,6 +36,13 @@ const Courses: React.FC = () => {
     },
   ];
 
+  const scrollToContact = () => {
+    const element = document.querySelector('#contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="courses" className="py-24 lg:py-32 bg-secondary/30">
       <div className="container mx-auto px-4" ref={ref}>
@@ -58,7 +65,8 @@ const Courses: React.FC = () => {
           {courses.map((course, index) => (
             <Card
               key={index}
-              className={`group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
+              onClick={scrollToContact}
+              className={`group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in cursor-pointer ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
               <CardHeader className="pb-4">
                 <div className={`w-14 h-14 rounded-xl ${course.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
