@@ -28,10 +28,10 @@ const Index: React.FC = () => {
         <main>
           <Hero />
           <WhyCamelot />
-          <Courses />
           <Teachers />
           <Results />
           <CenterGallery />
+          <Courses />
           <FAQ />
           <Contact />
         </main>

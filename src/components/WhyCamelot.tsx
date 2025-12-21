@@ -3,6 +3,7 @@ import { Crown, GraduationCap, Users, Trophy, Calendar, Building2, ChevronLeft, 
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import testCenterBg from '@/assets/test-center-bg.jpg';
 
 const WhyCamelot: React.FC = () => {
   const { t } = useLanguage();
@@ -22,6 +23,7 @@ const WhyCamelot: React.FC = () => {
       icon: Trophy,
       title: t('why.testCenter.title'),
       description: t('why.testCenter.desc'),
+      bgImage: testCenterBg,
     },
     {
       icon: Users,
@@ -103,12 +105,25 @@ const WhyCamelot: React.FC = () => {
                   key={index}
                   className={`${isMobile ? 'w-full' : 'w-1/3'} flex-shrink-0 px-2 lg:px-4`}
                 >
-                  <div className={`group text-center p-8 bg-card border border-border rounded-2xl shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50 hover-lift animate-scale-in ${isVisible ? 'visible' : ''}`}>
-                    <div className="w-20 h-20 mx-auto royal-gradient rounded-full flex items-center justify-center shadow-royal group-hover:scale-110 transition-transform mb-6">
-                      <feature.icon className="w-10 h-10 text-primary-foreground" />
+                  <div 
+                    className={`group text-center p-8 border border-border rounded-2xl shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50 hover-lift animate-scale-in relative overflow-hidden ${isVisible ? 'visible' : ''}`}
+                    style={feature.bgImage ? {
+                      backgroundImage: `url(${feature.bgImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    } : {}}
+                  >
+                    {feature.bgImage && (
+                      <div className="absolute inset-0 bg-primary/80 backdrop-blur-sm" />
+                    )}
+                    {!feature.bgImage && <div className="absolute inset-0 bg-card" />}
+                    <div className="relative z-10">
+                      <div className="w-20 h-20 mx-auto royal-gradient rounded-full flex items-center justify-center shadow-royal group-hover:scale-110 transition-transform mb-6">
+                        <feature.icon className="w-10 h-10 text-primary-foreground" />
+                      </div>
+                      <h3 className={`text-xl font-bold mb-3 ${feature.bgImage ? 'text-white' : 'text-foreground'}`}>{feature.title}</h3>
+                      <p className={`leading-relaxed text-sm ${feature.bgImage ? 'text-white/90' : 'text-muted-foreground'}`}>{feature.description}</p>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{feature.description}</p>
                   </div>
                 </div>
               ))}
