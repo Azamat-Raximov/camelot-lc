@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import { supabase } from '@/integrations/supabase/client';
 import {
   Select,
   SelectContent,
@@ -69,23 +70,21 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://hook.eu1.make.com/rhozcmbxxqxtuyvjmiopdgvwefytt8an', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const { data, error } = await supabase.functions.invoke('send-webhook', {
+        body: {
           name: formData.name,
           phone: `+998${formData.phone}`,
           course: formData.course,
           message: formData.message,
           timestamp: new Date().toISOString(),
-        }),
+        },
       });
 
-      if (!response.ok) {
-        throw new Error('Webhook request failed');
+      if (error) {
+        throw new Error(error.message);
       }
+
+      console.log('Webhook response:', data);
 
       toast({
         title: language === 'uz' ? 'Muvaffaqiyat!' : 'Success!',
