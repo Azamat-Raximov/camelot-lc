@@ -161,21 +161,21 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Stats Section - Compact */}
-          <div className="flex flex-wrap justify-center gap-3 lg:gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:gap-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className={`relative rounded-xl bg-gradient-to-br ${stat.bgColor} backdrop-blur-md px-4 py-3 transform hover:scale-105 transition-all duration-300 shadow-md`}
+                className={`relative rounded-xl bg-gradient-to-br ${stat.bgColor} backdrop-blur-md px-3 py-2.5 transform hover:scale-105 transition-all duration-300 shadow-md`}
               >
-                <div className="flex items-center gap-2">
-                  <stat.icon className="w-4 h-4 text-primary-foreground/80" />
+                <div className="flex items-center justify-center gap-1.5">
+                  <stat.icon className="w-3.5 h-3.5 text-primary-foreground/80" />
                   <CountUp end={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-primary-foreground/90 text-xs font-medium mt-0.5">
+                <p className="text-primary-foreground/90 text-[10px] font-medium mt-0.5 text-center">
                   {stat.label}
                 </p>
                 {stat.sublabel && (
-                  <p className="text-primary-foreground/70 text-[10px]">
+                  <p className="text-primary-foreground/70 text-[9px] text-center">
                     {stat.sublabel}
                   </p>
                 )}
