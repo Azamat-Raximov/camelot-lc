@@ -20,7 +20,7 @@ const CenterGallery: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation();
   
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: false })
+    Autoplay({ delay: 4000, stopOnInteraction: false })
   );
   
   const [emblaRef, emblaApi] = useEmblaCarousel(

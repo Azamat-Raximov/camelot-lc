@@ -85,11 +85,11 @@ const ResultsCarousel: React.FC<ResultsCarouselProps> = ({ items, showInfo = fal
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
 
-  // Auto-play every 2 seconds
+  // Auto-play every 4 seconds with smooth transition
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 2000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [maxIndex]);
 

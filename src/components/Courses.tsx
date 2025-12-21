@@ -16,7 +16,8 @@ const Courses: React.FC = () => {
       description: t('courses.general.desc'),
       duration: '3-6 oy',
       level: 'A1 - C1',
-      color: 'bg-primary/10 text-primary',
+      iconColor: 'bg-primary/10 text-primary',
+      cardGradient: 'bg-gradient-to-br from-[hsl(217,78%,41%)] via-[hsl(217,78%,51%)] to-[hsl(217,78%,61%)]',
     },
     {
       icon: Target,
@@ -24,7 +25,8 @@ const Courses: React.FC = () => {
       description: t('courses.ielts.desc'),
       duration: '2-4 oy',
       level: 'B1 - C2',
-      color: 'bg-accent/20 text-accent-foreground',
+      iconColor: 'bg-orange-500/10 text-orange-500',
+      cardGradient: 'bg-gradient-to-br from-[hsl(25,95%,50%)] via-[hsl(30,95%,55%)] to-[hsl(35,95%,60%)]',
     },
     {
       icon: Award,
@@ -32,7 +34,8 @@ const Courses: React.FC = () => {
       description: t('courses.cefr.desc'),
       duration: '1-3 oy',
       level: 'A1 - C2',
-      color: 'bg-primary/10 text-primary',
+      iconColor: 'bg-purple-500/10 text-purple-500',
+      cardGradient: 'bg-gradient-to-br from-[hsl(270,70%,50%)] via-[hsl(280,70%,55%)] to-[hsl(290,70%,60%)]',
     },
   ];
 
@@ -66,24 +69,24 @@ const Courses: React.FC = () => {
             <Card
               key={index}
               onClick={scrollToContact}
-              className={`group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in cursor-pointer ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
+              className={`group ${course.cardGradient} border-0 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in cursor-pointer ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
               <CardHeader className="pb-4">
-                <div className={`w-14 h-14 rounded-xl ${course.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <course.icon className="w-7 h-7" />
+                <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <course.icon className="w-7 h-7 text-white" />
                 </div>
-                <CardTitle className="text-2xl text-foreground">{course.title}</CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed">
+                <CardTitle className="text-2xl text-white">{course.title}</CardTitle>
+                <CardDescription className="text-white/80 leading-relaxed">
                   {course.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center gap-6 pt-4 border-t border-border">
-                  <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="flex items-center gap-6 pt-4 border-t border-white/20">
+                  <div className="flex items-center gap-2 text-white/80">
                     <Clock className="w-4 h-4" />
                     <span className="text-sm">{course.duration}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
+                  <div className="flex items-center gap-2 text-white/80">
                     <BarChart3 className="w-4 h-4" />
                     <span className="text-sm">{course.level}</span>
                   </div>
