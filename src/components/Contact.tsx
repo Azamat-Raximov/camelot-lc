@@ -227,6 +227,23 @@ const Contact: React.FC = () => {
               </a>
 
               <a
+                href="https://t.me/Camelot_LC"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:border-primary/50 transition-colors group"
+              >
+                <div className="w-12 h-12 royal-gradient rounded-xl flex items-center justify-center shadow-royal group-hover:scale-110 transition-transform">
+                  <MessageCircle className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    {language === 'uz' ? 'Telegram' : 'Telegram'}
+                  </p>
+                  <p className="text-lg font-semibold text-foreground">@Camelot_LC</p>
+                </div>
+              </a>
+
+              <a
                 href="https://yandex.uz/maps/org/118052541979/?ll=68.766565%2C40.497976&z=16"
                 target="_blank"
                 rel="noopener noreferrer"
