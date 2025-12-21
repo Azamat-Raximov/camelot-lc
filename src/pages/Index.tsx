@@ -1,13 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import Courses from '@/components/Courses';
+import Teachers from '@/components/Teachers';
+import Results from '@/components/Results';
+import WhyCamelot from '@/components/WhyCamelot';
+import Gallery from '@/components/Gallery';
+import FAQ from '@/components/FAQ';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
-const Index = () => {
+const Index: React.FC = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <LanguageProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main>
+          <Hero />
+          <Courses />
+          <Teachers />
+          <Results />
+          <WhyCamelot />
+          <Gallery />
+          <FAQ />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-    </div>
+    </LanguageProvider>
   );
 };
 
