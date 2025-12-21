@@ -6,7 +6,7 @@ interface UseCountAnimationProps {
   suffix?: string;
 }
 
-export const useCountAnimation = ({ end, duration = 2000, suffix = '' }: UseCountAnimationProps) => {
+export const useCountAnimation = ({ end, duration = 4000, suffix = '' }: UseCountAnimationProps) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

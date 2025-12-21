@@ -78,12 +78,20 @@ const ResultsCarousel: React.FC<ResultsCarouselProps> = ({ items, showInfo = fal
   const maxIndex = Math.max(0, items.length - visibleCount);
 
   const goNext = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
   const goPrev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
+
+  // Auto-play every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [maxIndex]);
 
   const visibleItems = items.slice(currentIndex, currentIndex + visibleCount);
 

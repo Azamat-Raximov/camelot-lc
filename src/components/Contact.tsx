@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
     return digitsOnly.length === 9;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name.trim()) {
@@ -68,15 +68,37 @@ const Contact: React.FC = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      await fetch('https://hook.eu1.make.com/rhozcmbxxqxtuyvjmiopdgvwefytt8an', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'no-cors',
+        body: JSON.stringify({
+          name: formData.name,
+          phone: `+998${formData.phone}`,
+          course: formData.course,
+          message: formData.message,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
       toast({
         title: language === 'uz' ? 'Muvaffaqiyat!' : 'Success!',
         description: t('contact.success'),
       });
       setFormData({ name: '', phone: '', course: '', message: '' });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        variant: 'destructive',
+        title: language === 'uz' ? 'Xatolik' : 'Error',
+        description: language === 'uz' ? 'Xatolik yuz berdi. Qaytadan urinib ko\'ring.' : 'An error occurred. Please try again.',
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
