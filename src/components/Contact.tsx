@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
           <div className="text-center mb-10">
             <Badge variant="secondary" className="mb-4 px-4 py-1.5">
               <Mail className="w-4 h-4 mr-2" />
-              {language === 'uz' ? 'Ro\'yxatdan o\'tish' : 'Registration'}
+              {language === 'uz' ? 'Bizga bog\'lanish' : 'Contact Us'}
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               {language === 'uz' ? 'Kursga yoziling' : 'Enroll in a Course'}
@@ -200,7 +200,7 @@ const Contact: React.FC = () => {
           <div className="animate-fade-in">
             <Badge variant="secondary" className="mb-4 px-4 py-1.5">
               <Phone className="w-4 h-4 mr-2" />
-              {t('nav.contact')}
+              {language === 'uz' ? 'Manzilimiz' : 'Our Address'}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               {t('contact.title')}

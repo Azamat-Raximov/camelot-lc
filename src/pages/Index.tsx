@@ -2,10 +2,10 @@ import React from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import WhyCamelot from '@/components/WhyCamelot';
 import Courses from '@/components/Courses';
 import Teachers from '@/components/Teachers';
 import Results from '@/components/Results';
-import WhyCamelot from '@/components/WhyCamelot';
 import Gallery from '@/components/Gallery';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
@@ -18,10 +18,10 @@ const Index: React.FC = () => {
         <Header />
         <main>
           <Hero />
+          <WhyCamelot />
           <Courses />
           <Teachers />
           <Results />
-          <WhyCamelot />
           <Gallery />
           <FAQ />
           <Contact />
