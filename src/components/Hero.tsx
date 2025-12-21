@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
       <div className="relative z-10 container mx-auto px-4 py-32 lg:py-40">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 mb-8">
+          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 mb-8 animate-fade-in">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             <span className="text-primary-foreground/90 text-sm font-medium">
               Guliston, Sirdaryo
@@ -38,21 +38,21 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Motto */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-6 tracking-tight">
-            {t('hero.motto')}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-6 tracking-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            WISDOM - IS DOING!
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-primary-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-primary-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
             {t('hero.subtitle')}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <Button
               onClick={() => scrollToSection('#courses')}
               size="lg"
-              className="gold-gradient text-accent-foreground hover:opacity-90 shadow-lg group px-8 py-6 text-lg font-semibold"
+              className="gold-gradient text-accent-foreground hover:opacity-90 shadow-lg group px-8 py-6 text-lg font-semibold animate-pulse-glow"
             >
               {t('hero.cta')}
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

@@ -2,9 +2,11 @@ import React from 'react';
 import { TrendingUp, Users, Award, ThumbsUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Results: React.FC = () => {
   const { t } = useLanguage();
+  const { ref, isVisible } = useScrollAnimation();
 
   const stats = [
     {
@@ -35,9 +37,9 @@ const Results: React.FC = () => {
 
   return (
     <section id="results" className="py-24 lg:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className={`text-center max-w-2xl mx-auto mb-16 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
           <Badge variant="secondary" className="mb-4 px-4 py-1.5">
             <TrendingUp className="w-4 h-4 mr-2" />
             {t('nav.results')}
@@ -55,7 +57,7 @@ const Results: React.FC = () => {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="group bg-card border border-border rounded-2xl p-8 text-center shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50"
+              className={`group bg-card border border-border rounded-2xl p-8 text-center shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50 hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
               <div className={`w-16 h-16 rounded-xl ${stat.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}>
                 <stat.icon className="w-8 h-8" />

@@ -2,9 +2,11 @@ import React from 'react';
 import { Crown, GraduationCap, Users, Trophy, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const WhyCamelot: React.FC = () => {
   const { t } = useLanguage();
+  const { ref, isVisible } = useScrollAnimation();
 
   const features = [
     {
@@ -31,9 +33,9 @@ const WhyCamelot: React.FC = () => {
 
   return (
     <section className="py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className={`text-center max-w-2xl mx-auto mb-16 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
           <Badge variant="secondary" className="mb-4 px-4 py-1.5">
             <Crown className="w-4 h-4 mr-2" />
             Camelot LC
@@ -51,7 +53,7 @@ const WhyCamelot: React.FC = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group flex gap-5 p-6 bg-card border border-border rounded-2xl shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50"
+              className={`group flex gap-5 p-6 bg-card border border-border rounded-2xl shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50 hover-lift animate-slide-${index % 2 === 0 ? 'left' : 'right'} ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
               <div className="w-14 h-14 shrink-0 royal-gradient rounded-xl flex items-center justify-center shadow-royal group-hover:scale-110 transition-transform">
                 <feature.icon className="w-7 h-7 text-primary-foreground" />

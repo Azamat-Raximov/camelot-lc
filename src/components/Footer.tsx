@@ -1,6 +1,7 @@
 import React from 'react';
-import { Crown, Phone, MapPin, Heart } from 'lucide-react';
+import { Phone, MapPin, Send } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import logo from '@/assets/logo.jpg';
 
 const Footer: React.FC = () => {
   const { t, language } = useLanguage();
@@ -28,20 +29,22 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
-                <Crown className="w-6 h-6 text-foreground" />
-              </div>
+              <img 
+                src={logo} 
+                alt="Camelot LC Logo" 
+                className="w-10 h-10 rounded-lg object-cover"
+              />
               <span className="text-xl font-bold text-background">
                 Camelot <span className="text-accent">LC</span>
               </span>
             </a>
-            <p className="text-background/70 mb-4 max-w-sm">
+            <p className="text-background/70 mb-2 max-w-sm">
               {t('footer.slogan')}
             </p>
             <p className="text-background/50 text-sm">
               {language === 'uz'
-                ? "Sirdaryo viloyatidagi eng yaxshi ingliz tili o'quv markazi"
-                : 'The best English language center in Sirdarya region'}
+                ? "Sirdaryo viloyatidagi ingliz tili o'quv markazi"
+                : 'English language center in Sirdarya region'}
             </p>
           </div>
 
@@ -89,10 +92,19 @@ const Footer: React.FC = () => {
           <p className="text-background/50 text-sm">
             © {currentYear} Camelot LC. {t('footer.rights')}.
           </p>
-          <p className="text-background/50 text-sm flex items-center gap-1">
-            {language === 'uz' ? 'Guliston shahri uchun' : 'Made for Guliston with'}
-            <Heart className="w-4 h-4 text-accent fill-accent" />
-          </p>
+          <a 
+            href="https://t.me/azamat_442"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-background/50 text-sm flex items-center gap-2 hover:text-accent transition-colors group"
+          >
+            <span>
+              {language === 'uz' 
+                ? 'Azamat Raximov tomonidan qilindi. Sizga ham sayt kerakmi? Menga yozing' 
+                : 'Made by Azamat Raximov. Need a website? Contact me'}
+            </span>
+            <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </div>
     </footer>
