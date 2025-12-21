@@ -2,12 +2,14 @@ import React from 'react';
 import { Camera } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import gallery1 from '@/assets/gallery-1.jpg';
 import gallery2 from '@/assets/gallery-2.jpg';
 import gallery3 from '@/assets/gallery-3.jpg';
 
 const Gallery: React.FC = () => {
   const { t } = useLanguage();
+  const { ref, isVisible } = useScrollAnimation();
 
   const images = [
     { src: gallery1, alt: 'Modern classroom' },
@@ -17,9 +19,9 @@ const Gallery: React.FC = () => {
 
   return (
     <section className="py-24 lg:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className={`text-center max-w-2xl mx-auto mb-16 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
           <Badge variant="secondary" className="mb-4 px-4 py-1.5">
             <Camera className="w-4 h-4 mr-2" />
             Gallery
@@ -37,7 +39,7 @@ const Gallery: React.FC = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300"
+              className={`group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
               <img
                 src={image.src}

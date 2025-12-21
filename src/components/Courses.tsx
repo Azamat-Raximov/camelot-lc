@@ -3,9 +3,11 @@ import { BookOpen, Target, Award, Clock, BarChart3 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Courses: React.FC = () => {
   const { t } = useLanguage();
+  const { ref, isVisible } = useScrollAnimation();
 
   const courses = [
     {
@@ -36,9 +38,9 @@ const Courses: React.FC = () => {
 
   return (
     <section id="courses" className="py-24 lg:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className={`text-center max-w-2xl mx-auto mb-16 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
           <Badge variant="secondary" className="mb-4 px-4 py-1.5">
             <BookOpen className="w-4 h-4 mr-2" />
             {t('nav.courses')}
@@ -56,7 +58,7 @@ const Courses: React.FC = () => {
           {courses.map((course, index) => (
             <Card
               key={index}
-              className="group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden"
+              className={`group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
               <CardHeader className="pb-4">
                 <div className={`w-14 h-14 rounded-xl ${course.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>

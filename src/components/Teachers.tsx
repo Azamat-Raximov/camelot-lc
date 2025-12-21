@@ -3,12 +3,14 @@ import { Users, Award, Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import teacher1 from '@/assets/teacher-1.jpg';
 import teacher2 from '@/assets/teacher-2.jpg';
 import teacher3 from '@/assets/teacher-3.jpg';
 
 const Teachers: React.FC = () => {
   const { t, language } = useLanguage();
+  const { ref, isVisible } = useScrollAnimation();
 
   const teachers = [
     {
@@ -36,9 +38,9 @@ const Teachers: React.FC = () => {
 
   return (
     <section id="teachers" className="py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className={`text-center max-w-2xl mx-auto mb-16 animate-on-scroll ${isVisible ? 'visible' : ''}`}>
           <Badge variant="secondary" className="mb-4 px-4 py-1.5">
             <Users className="w-4 h-4 mr-2" />
             {t('nav.teachers')}
@@ -56,9 +58,9 @@ const Teachers: React.FC = () => {
           {teachers.map((teacher, index) => (
             <Card
               key={index}
-              className="group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden"
+              className={`group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
             >
-              <div className="relative">
+              <div className="relative overflow-hidden">
                 <img
                   src={teacher.image}
                   alt={teacher.name}
