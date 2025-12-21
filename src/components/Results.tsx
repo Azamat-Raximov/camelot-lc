@@ -127,7 +127,7 @@ const ResultsCarousel: React.FC<ResultsCarouselProps> = ({ items, showInfo = fal
                 <img
                   src={item.image}
                   alt={`${altPrefix} ${actualIndex + 1}`}
-                  className="w-full h-64 md:h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
                   <span className="text-primary-foreground text-sm font-medium bg-primary/80 px-3 py-1 rounded-full">
