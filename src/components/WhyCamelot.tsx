@@ -11,7 +11,7 @@ const WhyCamelot: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -46,12 +46,20 @@ const WhyCamelot: React.FC = () => {
   ];
 
   const goNext = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, features.length - 1));
+    setCurrentIndex((prev) => (prev >= features.length - 1 ? 0 : prev + 1));
   };
 
   const goPrev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    setCurrentIndex((prev) => (prev <= 0 ? features.length - 1 : prev - 1));
   };
+
+  // Auto-play every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= features.length - 1 ? 0 : prev + 1));
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [features.length]);
 
   return (
     <section id="why-camelot" className="py-24 lg:py-32 bg-background">
@@ -140,11 +148,11 @@ const WhyCamelot: React.FC = () => {
             </div>
           </div>
         ) : (
-          /* Desktop/Tablet Grid */
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {features.map((feature, index) => (
+          /* Desktop Grid - Show only 3 at a time */
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {features.slice(currentIndex, currentIndex + 3).map((feature, index) => (
               <div
-                key={index}
+                key={currentIndex + index}
                 className={`group text-center p-8 bg-card border border-border rounded-2xl shadow-card hover:shadow-elegant transition-all duration-300 hover:border-primary/50 hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
               >
                 <div className="w-20 h-20 mx-auto royal-gradient rounded-full flex items-center justify-center shadow-royal group-hover:scale-110 transition-transform mb-6">
