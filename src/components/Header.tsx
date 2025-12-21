@@ -49,6 +49,7 @@ const Header: React.FC = () => {
     { href: '#courses', label: t('nav.courses') },
     { href: '#teachers', label: t('nav.teachers') },
     { href: '#results', label: t('nav.results') },
+    { href: '#faq', label: t('nav.faq') },
   ];
 
   const scrollToSection = (href: string) => {
