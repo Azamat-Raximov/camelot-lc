@@ -59,7 +59,7 @@ const WhyCamelot: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev >= features.length - 1 ? 0 : prev + 1));
-    }, 2000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [features.length]);
 
