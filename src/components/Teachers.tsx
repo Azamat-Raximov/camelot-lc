@@ -8,6 +8,15 @@ import teacherAhadbek from '@/assets/teacher-ahadbek.jpg';
 import teacherJavlonbek from '@/assets/teacher-javlonbek.jpg';
 import teacherZuhur from '@/assets/teacher-zuhur.jpg';
 import teacherOzodbek from '@/assets/teacher-ozodbek.jpg';
+import teacherAzizbek from '@/assets/teacher-azizbek.jpg';
+import teacherKhusndor from '@/assets/teacher-khusndor.jpg';
+import teacherMirzohid from '@/assets/teacher-mirzohid.jpg';
+import teacherMohinur from '@/assets/teacher-mohinur.jpg';
+import teacherMuzaffar from '@/assets/teacher-muzaffar.jpg';
+import teacherDoston from '@/assets/teacher-doston.jpg';
+import teacherNigina from '@/assets/teacher-nigina.jpg';
+import teacherShahboz from '@/assets/teacher-shahboz.jpg';
+import teacherDiyorbek from '@/assets/teacher-diyorbek.jpg';
 
 interface Teacher {
   name: string;
@@ -22,16 +31,28 @@ const Teachers: React.FC = () => {
 
   const teachers: Teacher[] = [
     {
+      name: 'Berdimurotov Shahboz',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.5',
+      image: teacherShahboz,
+    },
+    {
+      name: 'Doston Jumaboyev',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.5',
+      image: teacherDoston,
+    },
+    {
+      name: 'Ozodbek Qilichev',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '7.5',
+      image: teacherOzodbek,
+    },
+    {
       name: 'Ahadbek Odilbekov',
       role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
       ieltsScore: '8.0',
       image: teacherAhadbek,
-    },
-    {
-      name: 'Javlonbek Abdurazzoqov',
-      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
-      ieltsScore: '7.5',
-      image: teacherJavlonbek,
     },
     {
       name: 'Mansurov Zuhur',
@@ -40,10 +61,52 @@ const Teachers: React.FC = () => {
       image: teacherZuhur,
     },
     {
-      name: 'Ozodbek Qilichev',
-      role: language === 'uz' ? 'IELTS Ustozi (Listening)' : 'IELTS Teacher (Listening)',
-      ieltsScore: '8.5',
-      image: teacherOzodbek,
+      name: 'Azizbek Toshmatov',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.0',
+      image: teacherAzizbek,
+    },
+    {
+      name: 'Sattorov Khusndor',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.0',
+      image: teacherKhusndor,
+    },
+    {
+      name: 'Mirzohid Ibrohimov',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.0',
+      image: teacherMirzohid,
+    },
+    {
+      name: 'Rasulov Muzaffar',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.0',
+      image: teacherMuzaffar,
+    },
+    {
+      name: 'Nigina Abdunabiyeva',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.0',
+      image: teacherNigina,
+    },
+    {
+      name: 'Diyorbek Egamberdiyev',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '8.0',
+      image: teacherDiyorbek,
+    },
+    {
+      name: 'Mohinur Abdullayeva',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '7.5',
+      image: teacherMohinur,
+    },
+    {
+      name: 'Javlonbek Abdurazzoqov',
+      role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher',
+      ieltsScore: '7.5',
+      image: teacherJavlonbek,
     },
   ];
 
@@ -65,11 +128,11 @@ const Teachers: React.FC = () => {
         </div>
 
         {/* Teacher Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
           {teachers.map((teacher, index) => (
             <Card
               key={teacher.name}
-              className={`group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${index + 1}`}
+              className={`group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift animate-scale-in ${isVisible ? 'visible' : ''} stagger-${(index % 4) + 1}`}
             >
               <div className="relative overflow-hidden aspect-square md:aspect-[3/4]">
                 <img
@@ -77,16 +140,16 @@ const Teachers: React.FC = () => {
                   alt={teacher.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-4 right-4">
-                  <Badge className="royal-gradient text-primary-foreground">
+                <div className="absolute top-3 right-3">
+                  <Badge className="royal-gradient text-primary-foreground text-xs">
                     <Award className="w-3 h-3 mr-1" />
                     IELTS {teacher.ieltsScore}
                   </Badge>
                 </div>
               </div>
-              <CardContent className="p-4 text-center">
-                <h3 className="text-lg font-bold text-foreground mb-1">{teacher.name}</h3>
-                <p className="text-primary font-medium text-sm">{teacher.role}</p>
+              <CardContent className="p-3 md:p-4 text-center">
+                <h3 className="text-sm md:text-lg font-bold text-foreground mb-1">{teacher.name}</h3>
+                <p className="text-primary font-medium text-xs md:text-sm">{teacher.role}</p>
               </CardContent>
             </Card>
           ))}
@@ -96,8 +159,8 @@ const Teachers: React.FC = () => {
         <div className="text-center mt-12">
           <p className="text-xl font-semibold text-muted-foreground">
             {language === 'uz' 
-              ? "...va yana 10 dan ortiq tajribali ustozlar"
-              : "...and 10+ more experienced teachers"
+              ? "...va yana boshqa tajribali ustozlar"
+              : "...and more experienced teachers"
             }
           </p>
         </div>
