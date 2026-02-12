@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logo from '@/assets/logo.jpg';
@@ -118,7 +118,7 @@ const Header: React.FC = () => {
                   onClick={() => setIsLangOpen(!isLangOpen)}
                   className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary text-foreground font-medium transition-all hover:bg-secondary/80"
                 >
-                  <Globe className="w-4 h-4" />
+                  
                   <span className="flex items-center gap-1.5">
                     {language === 'uz' ? <UzbekFlag /> : <UKFlag />}
                     <span className="uppercase">{language}</span>
