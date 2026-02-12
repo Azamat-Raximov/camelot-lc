@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logo from '@/assets/logo.jpg';
@@ -218,6 +218,7 @@ const Header: React.FC = () => {
                 opacity: isMenuOpen ? 1 : 0,
               }}
             >
+              <Phone className="w-4 h-4 mr-2" />
               {t('nav.contact')}
             </Button>
           </nav>
