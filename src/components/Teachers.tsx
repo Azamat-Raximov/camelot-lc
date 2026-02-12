@@ -90,7 +90,7 @@ const Teachers: React.FC = () => {
               {teachers.map((teacher) => (
                 <div
                   key={teacher.name}
-                  className="flex-[0_0_45%] sm:flex-[0_0_30%] lg:flex-[0_0_23%] min-w-0"
+                  className="flex-[0_0_80%] sm:flex-[0_0_45%] md:flex-[0_0_30%] lg:flex-[0_0_23%] min-w-0"
                 >
                   <Card className="group bg-card border-border hover:border-primary/50 transition-all duration-300 shadow-card hover:shadow-elegant overflow-hidden hover-lift">
                     <div className="relative overflow-hidden aspect-[3/4]">
