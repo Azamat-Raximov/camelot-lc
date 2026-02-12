@@ -78,8 +78,10 @@ const translations: Record<Language, Record<string, string>> = {
     'faq.a2': "To'lovni naqd, bank kartasi orqali yoki oylik to'lov rejasi bo'yicha amalga oshirish mumkin.",
     'faq.q3': 'Sinov darsi bormi?',
     'faq.a3': "Ha, dastlabki 3 ta dars bepul sinov darsi sifatida o'tkaziladi.",
-    'faq.q4': "Qaysi sinfdagi o'quvchilar qabul qilinadi?",
-    'faq.a4': "Biz 5-sinfdan yuqori o'quvchilarni qabul qilamiz. Bolalar va kattalar uchun alohida guruhlar mavjud.",
+    'faq.q4': "Yoshga oid chegaralar mavjudmi?",
+    'faq.a4': "Ha, biz 5-sinfdan yuqori o'quvchilarni qabul qilamiz. Bolalar va kattalar uchun alohida guruhlar tashkil etilgan.",
+    'faq.q5': "O'zim xohlagan darajada o'qishni boshlashim uchun nima qilishim kerak?",
+    'faq.a5': "Markazimizga tashrif buyurib, administratsiya xodimlaridan to'liq ma'lumot olishingiz mumkin. O'zingiz xohlagan darajada o'qishni boshlash uchun og'zaki suhbat va testdan muvaffaqiyatli o'tishingiz zarur.",
     
     // Contact
     'contact.title': "Biz bilan bog'laning",
@@ -166,8 +168,10 @@ const translations: Record<Language, Record<string, string>> = {
     'faq.a2': 'Payment can be made in cash, by bank card, or through monthly payment plan.',
     'faq.q3': 'Is there a trial class?',
     'faq.a3': 'Yes, the first 3 classes are held as free trial classes.',
-    'faq.q4': 'What grade students are accepted?',
-    'faq.a4': 'We accept students from grade 5 and above. Separate groups for children and adults.',
+    'faq.q4': 'Are there any age restrictions?',
+    'faq.a4': 'Yes, we accept students from grade 5 and above. Separate groups are organized for children and adults.',
+    'faq.q5': 'What do I need to do to start at my desired level?',
+    'faq.a5': 'You can visit our center and get full information from the administration staff. To start at your desired level, you need to successfully pass an oral interview and a test.',
     
     // Contact
     'contact.title': 'Contact Us',
