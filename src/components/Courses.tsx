@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Target, Award, Clock, BarChart3 } from 'lucide-react';
+import { BookOpen, Target, Award, Clock, BarChart3, GraduationCap } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -37,6 +37,15 @@ const Courses: React.FC = () => {
       iconColor: 'bg-purple-500/10 text-purple-500',
       cardGradient: 'bg-gradient-to-br from-[hsl(270,70%,50%)] via-[hsl(280,70%,55%)] to-[hsl(290,70%,60%)]',
     },
+    {
+      icon: GraduationCap,
+      title: t('courses.sat.title'),
+      description: t('courses.sat.desc'),
+      duration: '3-6 oy',
+      level: 'All Levels',
+      iconColor: 'bg-emerald-500/10 text-emerald-500',
+      cardGradient: 'bg-gradient-to-br from-[hsl(160,70%,40%)] via-[hsl(170,70%,45%)] to-[hsl(180,70%,50%)]',
+    },
   ];
 
   const scrollToContact = () => {
@@ -64,7 +73,7 @@ const Courses: React.FC = () => {
         </div>
 
         {/* Course Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {courses.map((course, index) => (
             <Card
               key={index}

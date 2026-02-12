@@ -33,6 +33,8 @@ const translations: Record<Language, Record<string, string>> = {
     'courses.ielts.desc': "IELTS imtihoniga tayyorgarlik kursi. Reading, Writing, Listening va Speaking bo'limlarini chuqur o'rganing.",
     'courses.cefr.title': 'CEFR Sertifikat',
     'courses.cefr.desc': "A1-C2 darajalari uchun CEFR sertifikati olish kursi. Xalqaro standartlarga mos ta'lim.",
+    'courses.sat.title': 'SAT Tayyorlov',
+    'courses.sat.desc': "SAT imtihoniga tayyorgarlik kursi. Matematika va Ingliz tili bo'limlari alohida o'tiladi. Xalqaro universitetlarga kirish uchun zarur ball to'plang.",
     'courses.duration': 'Davomiyligi',
     'courses.level': 'Daraja',
     
@@ -119,6 +121,8 @@ const translations: Record<Language, Record<string, string>> = {
     'courses.ielts.desc': 'IELTS exam preparation course. Deep study of Reading, Writing, Listening and Speaking sections.',
     'courses.cefr.title': 'CEFR Certificate',
     'courses.cefr.desc': 'CEFR certification course for A1-C2 levels. Education matching international standards.',
+    'courses.sat.title': 'SAT Preparation',
+    'courses.sat.desc': 'SAT exam preparation course. Math and English sections are taught separately. Score high for international university admissions.',
     'courses.duration': 'Duration',
     'courses.level': 'Level',
     
