@@ -75,9 +75,9 @@ const translations: Record<Language, Record<string, string>> = {
     'faq.q2': "To'lov qanday amalga oshiriladi?",
     'faq.a2': "To'lovni naqd, bank kartasi orqali yoki oylik to'lov rejasi bo'yicha amalga oshirish mumkin.",
     'faq.q3': 'Sinov darsi bormi?',
-    'faq.a3': "Ha, birinchi dars bepul sinov darsi sifatida o'tkaziladi.",
-    'faq.q4': "Qaysi yoshdagi o'quvchilar qabul qilinadi?",
-    'faq.a4': "Biz 10 yoshdan kattalarni qabul qilamiz. Bolalar va kattalar uchun alohida guruhlar mavjud.",
+    'faq.a3': "Ha, dastlabki 3 ta dars bepul sinov darsi sifatida o'tkaziladi.",
+    'faq.q4': "Qaysi sinfdagi o'quvchilar qabul qilinadi?",
+    'faq.a4': "Biz 5-sinfdan yuqori o'quvchilarni qabul qilamiz. Bolalar va kattalar uchun alohida guruhlar mavjud.",
     
     // Contact
     'contact.title': "Biz bilan bog'laning",
@@ -161,9 +161,9 @@ const translations: Record<Language, Record<string, string>> = {
     'faq.q2': 'How can I make payment?',
     'faq.a2': 'Payment can be made in cash, by bank card, or through monthly payment plan.',
     'faq.q3': 'Is there a trial class?',
-    'faq.a3': 'Yes, the first class is held as a free trial class.',
-    'faq.q4': 'What age students are accepted?',
-    'faq.a4': 'We accept students from age 10 and above. Separate groups for children and adults.',
+    'faq.a3': 'Yes, the first 3 classes are held as free trial classes.',
+    'faq.q4': 'What grade students are accepted?',
+    'faq.a4': 'We accept students from grade 5 and above. Separate groups for children and adults.',
     
     // Contact
     'contact.title': 'Contact Us',
