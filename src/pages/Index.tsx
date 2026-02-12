@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import WhyCamelot from '@/components/WhyCamelot';
-import Courses from '@/components/Courses';
-import Teachers from '@/components/Teachers';
-import Results from '@/components/Results';
-import CenterGallery from '@/components/CenterGallery';
-import FAQ from '@/components/FAQ';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+
+const WhyCamelot = lazy(() => import('@/components/WhyCamelot'));
+const Courses = lazy(() => import('@/components/Courses'));
+const Teachers = lazy(() => import('@/components/Teachers'));
+const Results = lazy(() => import('@/components/Results'));
+const CenterGallery = lazy(() => import('@/components/CenterGallery'));
+const FAQ = lazy(() => import('@/components/FAQ'));
+const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
 import landingBg from '@/assets/landing-bg.png';
 
 const Index: React.FC = () => {
@@ -27,15 +28,19 @@ const Index: React.FC = () => {
         <Header />
         <main>
           <Hero />
-          <WhyCamelot />
-          <Teachers />
-          <Results />
-          <CenterGallery />
-          <Courses />
-          <Contact />
-          <FAQ />
+          <Suspense fallback={<div className="min-h-[200px]" />}>
+            <WhyCamelot />
+            <Teachers />
+            <Results />
+            <CenterGallery />
+            <Courses />
+            <Contact />
+            <FAQ />
+          </Suspense>
         </main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </div>
     </div>
   );

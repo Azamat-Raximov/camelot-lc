@@ -114,6 +114,8 @@ const Hero: React.FC = () => {
           src={heroImage}
           alt="Students learning at Camelot LC"
           className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 hero-overlay" />
       </div>
