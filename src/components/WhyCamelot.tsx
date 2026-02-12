@@ -55,11 +55,11 @@ const WhyCamelot: React.FC = () => {
     setCurrentIndex((prev) => (prev <= 0 ? features.length - 1 : prev - 1));
   };
 
-  // Auto-play every 2 seconds
+  // Auto-play every 12 seconds for readability
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev >= features.length - 1 ? 0 : prev + 1));
-    }, 8000);
+    }, 12000);
     return () => clearInterval(interval);
   }, [features.length]);
 
