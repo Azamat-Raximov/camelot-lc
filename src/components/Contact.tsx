@@ -30,6 +30,7 @@ const Contact: React.FC = () => {
     { value: 'general', label: 'General English' },
     { value: 'ielts', label: 'IELTS' },
     { value: 'cefr', label: 'CEFR' },
+    { value: 'sat', label: 'SAT' },
   ];
 
   const validatePhone = (phone: string): boolean => {
