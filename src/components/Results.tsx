@@ -12,10 +12,19 @@ import result6 from '@/assets/result-6.jpg';
 import result7 from '@/assets/result-7.jpg';
 import result8 from '@/assets/result-8.jpg';
 import result9 from '@/assets/result-9.jpg';
+import result10 from '@/assets/result-10.jpg';
+import result11 from '@/assets/result-11.jpg';
+import result12 from '@/assets/result-12.jpg';
+import result13 from '@/assets/result-13.jpg';
+import result14 from '@/assets/result-14.jpg';
+import result15 from '@/assets/result-15.jpg';
+import result16 from '@/assets/result-16.jpg';
 
 const resultImages = [
   result1, result2, result3, result4, result5,
-  result6, result7, result8, result9,
+  result6, result7, result8, result9, result10,
+  result11, result12, result13, result14, result15,
+  result16,
 ];
 
 function useScrollAnimationSimple() {
