@@ -38,6 +38,7 @@ const Teachers: React.FC = () => {
 
   const teachers: Teacher[] = [
     { name: 'Berdimurotov Shahboz', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.5', image: teacherShahboz },
+    { name: 'Nigina Abdunabiyeva', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.0', image: teacherNigina },
     { name: 'Doston Jumaboyev', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.5', image: teacherDoston },
     { name: 'Ozodbek Qilichev', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '7.5', image: teacherOzodbek },
     { name: 'Ahadbek Odilbekov', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.0', image: teacherAhadbek },
@@ -46,7 +47,6 @@ const Teachers: React.FC = () => {
     { name: 'Sattorov Khusndor', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.0', image: teacherKhusndor },
     { name: 'Mirzohid Ibrohimov', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.0', image: teacherMirzohid },
     { name: 'Rasulov Muzaffar', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.0', image: teacherMuzaffar },
-    { name: 'Nigina Abdunabiyeva', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.0', image: teacherNigina },
     { name: 'Diyorbek Egamberdiyev', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '8.0', image: teacherDiyorbek },
     { name: 'Mohinur Abdullayeva', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '7.5', image: teacherMohinur },
     { name: 'Javlonbek Abdurazzoqov', role: language === 'uz' ? 'IELTS Ustozi' : 'IELTS Teacher', ieltsScore: '7.5', image: teacherJavlonbek },
