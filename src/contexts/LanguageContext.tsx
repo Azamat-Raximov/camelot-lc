@@ -25,7 +25,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.contact': "Bog'lanish",
     
     // Courses
-    'courses.title': 'Bizning Kurslar',
+    'courses.title': 'Kurslarimiz',
     'courses.subtitle': "Har bir daraja uchun professional ingliz tili ta'limi",
     'courses.general.title': 'General English',
     'courses.general.desc': "Boshlang'ich darajadan yuqori darajagacha umumiy ingliz tili kursi. Grammatika, so'zlashuv va tinglash ko'nikmalarini o'rganing.",
