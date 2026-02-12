@@ -53,11 +53,15 @@ const Header: React.FC = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
     setIsMenuOpen(false);
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const headerHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+      }
+    }, 350);
   };
 
   // Close dropdown when clicking outside
