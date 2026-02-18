@@ -5,6 +5,25 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// In-memory rate limiter (per IP, max 5 requests per hour)
+const rateLimit = new Map<string, number[]>();
+const MAX_REQUESTS = 5;
+const WINDOW_MS = 3600000; // 1 hour
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const requests = rateLimit.get(ip) || [];
+  const recentRequests = requests.filter((time) => now - time < WINDOW_MS);
+
+  if (recentRequests.length >= MAX_REQUESTS) {
+    return false;
+  }
+
+  recentRequests.push(now);
+  rateLimit.set(ip, recentRequests);
+  return true;
+}
+
 // Input validation
 function validateInput(data: unknown): { valid: boolean; error?: string; data?: { name: string; phone: string; course: string; message: string; timestamp: string } } {
   if (!data || typeof data !== 'object') {
@@ -24,7 +43,7 @@ function validateInput(data: unknown): { valid: boolean; error?: string; data?: 
   }
 
   // Validate course
-  const validCourses = ['general', 'ielts', 'cefr'];
+  const validCourses = ['general', 'ielts', 'cefr', 'sat'];
   if (typeof course !== 'string' || !validCourses.includes(course)) {
     return { valid: false, error: 'Invalid course selection' };
   }
@@ -57,9 +76,17 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Rate limiting check
+  const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
+  if (!checkRateLimit(clientIP)) {
+    return new Response(JSON.stringify({ error: 'Too many requests. Please try again later.' }), {
+      status: 429,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Retry-After': '3600' },
+    });
+  }
+
   try {
     const body = await req.json();
-    console.log('Received form data:', body);
 
     // Validate input
     const validation = validateInput(body);
@@ -75,7 +102,6 @@ serve(async (req) => {
 
     const webhookUrl = 'https://hook.eu1.make.com/rhozcmbxxqxtuyvjmiopdgvwefytt8an';
     
-    // Send data as separate fields for Make.com to parse easily
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
@@ -90,13 +116,10 @@ serve(async (req) => {
       }),
     });
 
-    console.log('Webhook response status:', response.status);
-    
     const responseText = await response.text();
-    console.log('Webhook response:', responseText);
 
     if (!response.ok) {
-      throw new Error(`Webhook failed with status ${response.status}: ${responseText}`);
+      throw new Error(`Webhook failed with status ${response.status}`);
     }
 
     return new Response(JSON.stringify({ success: true, message: 'Data sent successfully' }), {
@@ -105,7 +128,7 @@ serve(async (req) => {
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
     console.error('Error in send-webhook function:', errorMessage);
-    return new Response(JSON.stringify({ error: errorMessage }), {
+    return new Response(JSON.stringify({ error: 'An error occurred. Please try again.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
